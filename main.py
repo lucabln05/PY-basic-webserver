@@ -96,9 +96,9 @@ def main_menu():
                 webserver_port = input("Hostport: ")
                 nl = "\n"
                 lines = webserver_host, nl, webserver_port
-                with open('config/config.txt', 'r+') as mysql_login:
-                    mysql_login.writelines(lines)
-                    mysql_login.close()  # schliesst datei wieder
+                with open('config/config.txt', 'r+') as server_config_add:
+                    server_config_add.writelines(lines)
+                    server_config_add.close()
                 print("New Server data saved ")
                 main_()
             except Exception as err:

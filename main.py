@@ -2,6 +2,7 @@
 #https://www.codementor.io/@joaojonesventura/building-a-basic-http-server-from-scratch-in-python-1cedkg0842
 
 import socket   #https://docs.python.org/3/library/socket.html
+import sys      #https://stackoverflow.com/questions/47699023/how-to-write-console-output-on-text-file
 
 
 def main_webserver():
@@ -84,8 +85,10 @@ def main_menu():
             main_webserver()
         elif user_input == 'help':
             print("""
-            To start the server enter start, then you will get the port and host. 
+            To start the server enter "start", then you will get the port and host. 
             Html files folder is: htdocs, main page should be named index.html, otherwise it can come to errors. 
+            To set the server config (port, host) enter "config"
+            Enter "close" to stop the software
             
             """)
             main_()
@@ -104,7 +107,13 @@ def main_menu():
             except Exception as err:
                 print(err)
                 main_()
+        elif user_input == 'close':
+            exit()
+        else:
+            print("Unknown command")
+            main_()
     main_()
+
 
 
 main_menu()

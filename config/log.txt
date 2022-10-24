@@ -1,0 +1,8 @@
+"
+    Python Simple Webserver
+    console.v.2022.10.24
+    by lucabln05
+    
+    
+Software intended for development only, no regular security updates.
+# 

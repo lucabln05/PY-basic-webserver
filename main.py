@@ -5,7 +5,7 @@ import socket   #https://docs.python.org/3/library/socket.html
 
 
 def main_webserver():
-    try
+    try:
         # define the host and port for the webserver by reading config file
         server_config = open('config/config.txt','r+')
 

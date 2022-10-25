@@ -2,7 +2,6 @@
 #https://www.codementor.io/@joaojonesventura/building-a-basic-http-server-from-scratch-in-python-1cedkg0842
 
 import socket   #https://docs.python.org/3/library/socket.html
-import sys      #https://stackoverflow.com/questions/47699023/how-to-write-console-output-on-text-file
 
 
 def main_webserver():
@@ -91,6 +90,7 @@ def main_menu():
             Enter "close" to stop the software
             
             """)
+
             main_()
         elif user_input == 'config':
             try:

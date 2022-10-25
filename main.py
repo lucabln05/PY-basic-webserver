@@ -1,4 +1,6 @@
 from wwwserver import main_webserver
+from threading import Thread        #https://stackoverflow.com/questions/2957116/make-2-functions-run-at-the-same-time
+from serverconfig import main_config
 
 def main_menu():
     print(""""
@@ -9,11 +11,11 @@ def main_menu():
     """)
     print('Software intended for development only, no regular security updates.')
 
-    def main_():
+    def main_loop():
         user_input = input('# ')
 
         if user_input == "start":
-            main_webserver()
+            Thread(target=main_webserver).start()
         elif user_input == 'help':
             print("""
             To start the server enter "start", then you will get the port and host. 
@@ -23,29 +25,17 @@ def main_menu():
             
             """)
 
-            main_()
+            main_loop()
         elif user_input == 'config':
-            try:
-                # configurate webserver host and port and save it in config file
-                webserver_host =  input("Hostname: ")
-                webserver_port = input("Hostport: ")
-                nl = "\n"
-                lines = webserver_host, nl, webserver_port
-                with open('config/config.txt', 'r+') as server_config_add:
-                    server_config_add.writelines(lines)
-                    server_config_add.close()
-                print("New Server data saved ")
-                main_()
-            except Exception as err:
-                print(err)
-                main_()
+            main_config()
+            main_loop()
         elif user_input == 'close':
             exit()
         else:
             print("Unknown command")
-            main_()
-    main_()
+            main_loop()
+    main_loop()
 
 
 
-main_menu()
+Thread( target=main_menu ).start()

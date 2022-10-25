@@ -3,7 +3,6 @@
 
 import socket   #https://docs.python.org/3/library/socket.html
 
-
 def main_webserver():
     try:
         # define the host and port for the webserver by reading config file

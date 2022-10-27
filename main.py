@@ -8,7 +8,7 @@ from main_gui import main_gui_start         #Import gui script
 def main_menu():
     print(""""
     Python Simple Webserver
-    console.v.2022.10.27
+    console.v.2022.10.28
     by lucabln05
     
     """)
@@ -27,7 +27,7 @@ def main_menu():
             Enter "close" to stop the software
             
             !BETA!
-            Type 'gui' to start the gui mode
+            Type 'gui' to start the gui mode, with new settings menu
             
             """)
 

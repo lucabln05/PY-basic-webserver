@@ -2,6 +2,7 @@
 #https://www.codementor.io/@joaojonesventura/building-a-basic-http-server-from-scratch-in-python-1cedkg0842
 
 import socket   #https://docs.python.org/3/library/socket.html
+from log_creater import log_file_write
 
 def main_webserver():
     try:
@@ -20,7 +21,6 @@ def main_webserver():
         server_socket.bind((server_host, server_port))      #set hostname and port
         server_socket.listen(1)
         print(f'Webserver start on {server_host}:{server_port}')
-
         #process userquestions over http
         while True:
             # accept client user and wait for connection
@@ -28,6 +28,9 @@ def main_webserver():
 
             # read and show information from user client
             request = client_connection.recv(1024).decode()
+            #save server request in config file
+            log_file_write(request)
+
             print(request)
 
 

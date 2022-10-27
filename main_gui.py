@@ -1,7 +1,8 @@
 import tkinter as tk
 import tkinter.font as tkFont
 from wwwserver import main_webserver
-from serverconfig import main_config
+from gui_settings import gui_settings_window
+
 import threading            #https://docs.python.org/3/library/threading.html
 
 class App:
@@ -30,7 +31,7 @@ class App:
         GLabel_108["font"] = ft
         GLabel_108["fg"] = "#333333"
         GLabel_108["justify"] = "center"
-        GLabel_108["text"] = "Version 2022.10.27 by lucabln05"
+        GLabel_108["text"] = "Version 2022.10.28 by lucabln05"
         GLabel_108.place(x=0,y=120,width=223,height=118)
 
 
@@ -52,7 +53,7 @@ class App:
         GLabel_94["font"] = ft
         GLabel_94["fg"] = "#333333"
         GLabel_94["justify"] = "center"
-        GLabel_94["text"] = "Settings (Console)"
+        GLabel_94["text"] = "Settings (BETA)"
         GLabel_94.place(x=250,y=150,width=302,height=52)
         #CLick function
         GLabel_94.bind("<Button>", settings_action)
@@ -72,4 +73,4 @@ def start_action(event):
 
 #start the config script
 def settings_action(event):
-    threading.Thread(target=main_config()).start()
+    threading.Thread(target=gui_settings_window()).start()

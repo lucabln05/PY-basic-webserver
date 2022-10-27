@@ -1,5 +1,7 @@
 import tkinter as tk
 import tkinter.font as tkFont
+#https://docs.python.org/3/library/tk.html
+
 
 class App:
     def __init__(self, root):
@@ -19,7 +21,7 @@ class App:
         GLabel_108["font"] = ft
         GLabel_108["fg"] = "#333333"
         GLabel_108["justify"] = "center"
-        GLabel_108["text"] = "  Version 2022.10.27 by lucabln05"
+        GLabel_108["text"] = "  Version 2022.10.28 by lucabln05"
         GLabel_108.place(x=0,y=110,width=223,height=118)
 
         GLabel_66=tk.Label(root)
@@ -64,11 +66,38 @@ class App:
         GLineEdit_83["text"] = "80"
         GLineEdit_83.place(x=130,y=80,width=181,height=34)
 
-        output_host = GLineEdit_621.get()
-        output_hostname = print(output_host)
+
+        #save script and read the inputs
+        def edit_config(event):
+            #read Editline https://tkdocs.com/widgets/entry.html
+            hostname_input = GLineEdit_621.get()
+            port_input = GLineEdit_83.get()
+
+            if hostname_input == "" or port_input == "":
+                GLabel_108["text"] = "ERROR: NO INPUT"
+                print("ERROR: NO INPUT")
+            else:
+                try:
+                    nl = "\n"
+                    lines = hostname_input, nl, port_input
+
+                    #save the data in the config file
+                    with open('config/config.txt', 'r+') as server_config_add:
+                        server_config_add.writelines(lines)
+                        server_config_add.close()
+                    print("New Server data saved ")
+                    exit()
+                except Exception as err:
+                    GLabel_108["text"] = f"ERROR: {err}"
+                    print(f"ERROR: {err}")
 
 
-        GButton_337=tk.Button(root)
+        #close script
+        def close_windows(event):
+            exit()
+
+
+        GButton_337=tk.Label(root)
         GButton_337["bg"] = "#4cd26b"
         ft = tkFont.Font(family='Times',size=10)
         GButton_337["font"] = ft
@@ -76,10 +105,10 @@ class App:
         GButton_337["justify"] = "center"
         GButton_337["text"] = "Save"
         GButton_337.place(x=320,y=160,width=70,height=25)
-        GButton_337["command"] = self.GButton_337_command
+        GButton_337.bind("<Button>", edit_config)
 
 
-        GButton_42=tk.Button(root)
+        GButton_42=tk.Label(root)
         GButton_42["bg"] = "#dc6666"
         ft = tkFont.Font(family='Times',size=10)
         GButton_42["font"] = ft
@@ -88,15 +117,8 @@ class App:
         GButton_42["text"] = "Close"
         GButton_42["relief"] = "flat"
         GButton_42.place(x=230,y=160,width=70,height=25)
-        GButton_42["command"] = output_hostname
+        GButton_42.bind("<Button>", close_windows)
 
-    #save button
-    def GButton_337_command(self):
-        print("command")
-
-    #close button
-    def GButton_42_command(self):
-        exit()
 
 
 
@@ -104,3 +126,5 @@ def gui_settings_window():
     root = tk.Tk()
     app = App(root)
     root.mainloop()
+
+

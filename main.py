@@ -18,7 +18,7 @@ def main_menu():
         user_input = input('# ')
 
         if user_input == "start":
-            main_webserver()
+            threading.Thread(target=main_webserver).start()
         elif user_input == 'help':
             print("""
             To start the server enter "start", then you will get the port and host. 
